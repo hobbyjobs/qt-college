@@ -92,3 +92,66 @@ PartyStudent()
 
 
 
+class Product(ModelSQL, ModelView):
+    'Product'
+    _name = 'product.product'
+
+    is_subject = fields.Boolean('subject',
+        help='Check if the product is a Subject avialable for purchase')
+    
+Product()
+
+
+
+
+class StudentData(ModelSQL, ModelView):
+    'Student related information'
+    _name = 'qtcollege.student'
+
+    name = fields.Many2One('party.party', 'student', required=True,
+        domain=[
+            ('is_student', '=', True),
+            ('is_person', '=', True),
+            ],
+        help='student Name')
+    lastname = fields.Function(fields.Char('Lastname'),
+        'get_student_lastname', searcher='search_student_lastname')
+    ssn = fields.Function(fields.Char('SSN'),
+        'get_student_ssn', searcher='search_student_ssn')
+    identification_code = fields.Char('ID', readonly=True,
+        help='student Identifier provided by the University.Is not the'
+        ' Social Security Number')
+    current_address = fields.Many2One('party.address', 'Address',
+        domain=[('party', '=', Eval('name'))],
+        depends=['name'],
+        help='Contact information. You may choose from the different contacts'
+        ' and addresses this student has.')
+    photo = fields.Binary('Picture')
+    dob = fields.Date('DoB', help='Date of Birth')
+    #age = fields.Function(fields.Char('Age'), 'student_age')
+    sex = fields.Selection([
+        ('m', 'Male'),
+        ('f', 'Female'),
+        ], 'Sex', required=True)
+    marital_status = fields.Selection([
+        (None, ''),
+        ('s', 'Single'),
+        ('m', 'Married'),
+        ('c', 'Concubinage'),
+        ('w', 'Widowed'),
+        ('d', 'Divorced'),
+        ('x', 'Separated'),
+        ], 'Marital Status', sort=False)
+
+    #ethnic_group = fields.Many2One('qtcollege.ethnicity', 'Ethnic group')
+
+    subjects = fields.One2Many('qtcollege.subject', 'name',
+        'Subjects')
+
+    general_info = fields.Text('General Information',
+        help='General information about the patient')
+    
+  
+
+StudentData()
+
