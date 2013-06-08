@@ -1,0 +1,94 @@
+#    Copyright (C) 2008-2013  QtCollege
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+About QT College 
+-----------------
+
+Qt College is a free software, A centralized Campus and Student Information System (SIS) 
+It covers the following functionality :
+
+	* Student Information System (SIS)
+	* Campus Management System
+
+Security
+--------
+It follows the access control and security model of Tryton
+
+
+Internationalization
+--------------------
+
+The main language will be English, but it can be easily translated to any other language using module translation.
+
+
+Download
+--------
+You can download the latest version or the development branch (svn) at the Qt College project at Google Code  . http://www.code.google.com/p/qt-college
+
+Supporting Governments
+----------------------
+
+Special thanks to the United Nations University (UNU-IIGH) and European Community (OSOR) for supporting Free Software and Qt-College, as a public good.
+
+
+Collaboration
+--------------
+
+There are many ways that you can contribute to the project, for example :
+
+    * Documentation
+    * Translation
+    * Bug reporting
+    * Quality Assurance
+    * Coding
+    * New functionality
+    * Implementations 
+
+
+Contact
+-------
+If you want to get involved in Qt College, please join the mailing lists at Qt College development. 
+
+	 http://www.code.google.com/p/qt-college
+
+** You need help to start a Qt-College project in your community
+
+We are committed to do our best in helping out projects that can improve the education of your country, region or village.
+We want the project to be a success, and since our resources are limited, we need to work together to make a great and sustainable project.
+Please keep in mind that most of the elegible projects will come from developing countries or NGOs helping out developing countries.
+In order to be elegible, we need the following information from you, your NGO or government :
+
+    * An introduction of the current needs
+    * The project will use free software, both at the server and workstations (client)
+    * There will be a local designated person that will be in charge of the project and the know-how transfer to the rest of the community. This person must be committed to be from the beginning of the project until two years after its completion.
+    * There must be a commitment of knowledge transfer to the rest of the team. 
+
+We will do our best to help you out with the implementation and training for the local team. Please send us a mail with that info to help@qtcollege.com and we'll back to you as soon as possible.
+
+
+Thanks
+Seyed Mohammad Motahar
+Author and main developer
+mohammad@qtcollege.com
+
+
+Main links :
+
+http://www.qtcollege.com
+help@qtcollege.com
+
+
+
