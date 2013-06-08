@@ -65,7 +65,7 @@ Subject()
 
 class PartyStudent(ModelSQL, ModelView):
     'Party'
-    __name__ = 'party.party'
+    _name = 'party.party'
 
     alias = fields.Char('Alias', help='Common name that the Party is reffered')
     is_person = fields.Boolean('Person',
