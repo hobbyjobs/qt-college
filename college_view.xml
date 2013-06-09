@@ -1,0 +1,359 @@
+<?xml version="1.0"?>
+<tryton>
+    <data>
+
+
+
+<!-- Initial Menu -->
+        <menuitem name="College" id="qtcollege_menu"/>
+        <menuitem name="Students" id="qtcollege_students_menu"
+            parent="qtcollege_menu" sequence="10" />
+
+        <menuitem name="Configuration" id="qtcollege_conf_menu"
+            parent="qtcollege_menu" sequence="999" />
+
+<!-- Teachers -->
+
+        <record model="ir.ui.view" id="qtcollege_teacher_view">
+            <field name="model">qtcollege.teacher</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="Teacher">
+                    <group col="8" colspan="4" id="general_info">
+                        <label name="name"/>
+                        <field name="name"/>
+                        <label name="institution"/>
+                        <field name="institution"/>
+                       
+                        <label name="code"/>
+                        <field name="code"/>
+                    </group>
+                    <newline/>
+                    <separator string="Extra Info" id="teacher_extra_info"/>
+                    <newline/>
+                    <field name="info" colspan="4"/>
+                </form>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qtcollege_teacher_tree">
+            <field name="model">qtcollege.teacher</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="Teachers">
+                    <field name="name" expand="1"/>
+                   
+                    <field name="code" expand="1"/>
+                    <field name="institution" expand="1"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.action.act_window" id="qtcollege_action_teacher">
+            <field name="name">Teachers</field>
+            <field name="res_model">qtcollege.teacher</field>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_teacher_list_view">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="qtcollege_teacher_tree"/>
+            <field name="act_window" ref="qtcollege_action_teacher"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_teacher_form_view">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="qtcollege_teacher_view"/>
+            <field name="act_window" ref="qtcollege_action_teacher"/>
+        </record>
+
+        <menuitem name="Config"
+            id="qtcollege_conf_teachers" parent="qtcollege_conf_menu"
+             sequence="1"/>
+        
+        <menuitem action="qtcollege_action_teacher"
+            id="qtcollege_edit_teacher" parent="qtcollege_conf_teachers"
+             sequence="1"/>
+
+
+<!-- Subjects -->
+
+        <record model="ir.ui.view" id="qtcollege_subject_form">
+            <field name="model">qtcollege.subject</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="subjects">
+                    <notebook>
+                        <page string="Main Info" id="medicament_main">
+                            <label name="name"/>
+                            <field name="name"/>
+                            <label name="category"/>
+                            <field name="category"/>
+                            <label name="credit_hours"/>
+                            <field name="credit_hours"/>
+                            <newline/>
+		                </page>
+                        <page string="Extra Info" id="medicament_extra_info">
+                            <label name="notes"/>
+                            <field name="notes"/>
+                        </page>
+
+                    </notebook>
+                </form>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qtcollege_subject_tree">
+            <field name="model">qtcollege.medicament</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="Subjects">
+                    <field name="name" expand="1"/>
+                    <field name="category"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.action.act_window" id="qtcollege_action_view_subject">
+            <field name="name">Subjects</field>
+            <field name="res_model">qtcollege.subject</field>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_qtcollege_subject_list_view">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="qtcollege_subject_tree"/>
+            <field name="act_window" ref="qtcollege_action_view_subject"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_qtcollege_subject_form_view">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="qtcollege_subject_form"/>
+            <field name="act_window" ref="qtcollege_action_view_subject"/>
+        </record>
+
+        <menuitem action="qtcollege_action_view_subject"
+            id="qtcollege_edit_subject" />
+
+
+
+
+<!-- PARTY -->
+
+        <record model="ir.ui.view" id="view_party_form">
+            <field name="model">party.party</field>
+            <field name="inherit" ref="party.party_view_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <data>
+                    <xpath
+                        expr="/form/notebook/page[@id=&quot;general&quot;]"
+                        position="after">
+                        <page string="Education" id="party_qtcollege">
+                            <group col="12" colspan="4" id="party_specs">
+                                <label name="is_person"/>
+                                <field name="is_person"/>
+                                <label name="is_student"/>
+                                <field name="is_student"/>
+                                <label name="is_teacher"/>
+                                <field name="is_teacher"/>
+                                <label name="is_institution"/>
+                                <field name="is_institution"/>
+                            </group>
+                            <newline/>
+                            <group col="10" colspan="4" id="person_details" states="{'invisible': Not(Bool(Eval('is_person')))}">
+                                <label name="ref"/>
+                                <field name="ref"/>
+                               
+                               
+                                <newline/>
+                                <label name="citizenship"/>
+                                <field name="citizenship"/>
+                                <label name="residence"/>
+                                <field name="residence"/>
+                               
+                            </group>
+
+                          
+
+                           
+
+                            <newline/>
+
+                            <group col="6" colspan="2" id="other_party_specs">
+                              
+                                <label name="internal_user"/>
+                                <field name="internal_user"/>
+                            </group>
+
+                            <newline/>
+     </page>
+
+                    </xpath>
+
+                    <xpath
+                        expr="/form/field[@name=&quot;name&quot;]"
+                        position="after">
+                        <label name="lastname"/>
+                        <field name="lastname"/>
+                        <label name="alias"/>
+                        <field name="alias"/>
+                    </xpath>
+
+                </data>
+                ]]>
+            </field>
+        </record>
+
+<!-- PRODUCT -->
+
+        <record model="ir.ui.view" id="view_qtcollege_product_form">
+            <field name="model">product.product</field>
+            <field name="inherit" ref="product.product_view_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <data>
+                    <xpath
+                        expr="/form/field[@name=&quot;active&quot;]"
+                        position="after">
+                        <separator string="Education" id="education" colspan="6"/>
+                        <group col="10" colspan="4" id="product_specs">
+                            <label name="is_subject"/>
+                            <field name="is_subject"/>
+                            
+                        </group>
+                </xpath>
+                </data>
+                ]]>
+            </field>
+        </record>
+        
+		
+<!-- Student Info -->
+
+        <record model="ir.ui.view" id="qtcollege_student_view_form">
+            <field name="model">qtcollege.student</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="student">
+<!-- Main Info -->
+                    <group string="Main Info" id="student_main_info">
+                        <group col="6" id="student_main_info1">
+                            <label name="name"/>
+                            <field name="name"/>
+                            <label name="identification_code"/>
+                            <field name="identification_code"/>
+                            <label name="sex"/>
+                            <field name="sex"/>
+                        </group>
+                        <newline/>
+                        <group col="6" id="student_main_info2">
+                            <label name="dob"/>
+                            <field name="dob"/>
+                            <label name="age"/>
+                            <field name="age"/>
+<!--
+                            <label name="childbearing_age"/>
+                            <field name="childbearing_age"/>
+-->
+                            <newline/>
+                           
+                        </group>
+                    </group>
+
+                    <group string="Picture" id="student_picture">
+                        <field name="photo" img_width="200" img_height="200"
+                            height="200" width="200" widget="image"/>
+                    </group>
+                    <newline/>
+
+                    <notebook>
+                        <page string="General Info" id="general_info">
+                            <notebook>
+
+                                <page string="Main" id="main_info_page">
+                                    <group col="6" colspan="4"
+                                        string="student General Information"
+                                        id="general_info">
+                                      
+                                       <!-- <label name="ethnic_group"/>
+                                        <field name="ethnic_group"/> -->
+                                        <newline/>
+                                        <label name="current_address"/>
+                                        <field name="current_address"/>
+                                        <label name="marital_status"/>
+                                        <field name="marital_status"/>
+                                        <newline/>
+                                    </group>
+                                </page>
+
+                                <page string="Misc" id="misc_info_page">
+                                    <group id="student_info" colspan="4" col="4">
+                                    <separator colspan="4"
+                                        string="student Extra Information"
+                                        id="separator_misc"/>
+                                    <newline/>
+
+                                    <field name="general_info" colspan="4"/>
+                                    </group>
+                                    <newline/>
+                                    <group colspan="4" col="6" id="misc_info_group">
+                                       
+                                    </group>
+                                </page>
+
+                            </notebook>
+                        </page>
+
+                    </notebook>
+                </form>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qtcollege_student_tree">
+            <field name="model">qtcollege.student</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="student">
+                    <field name="name" expand="1"/>
+                    <field name="lastname" expand="1"/>
+                    <field name="ssn" expand="1"/>
+                    <field name="identification_code" expand="1"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.action.act_window" id="action_qtcollege_student_view">
+            <field name="name">students</field>
+            <field name="res_model">qtcollege.student</field>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_qtcollege_student_view_list">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="qtcollege_student_tree"/>
+            <field name="act_window" ref="action_qtcollege_student_view"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_qtcollege_student_view_form">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="qtcollege_student_view_form"/>
+            <field name="act_window" ref="action_qtcollege_student_view"/>
+        </record>
+
+        <menuitem action="action_qtcollege_student_view"
+            id="menu_qtcollege_student_list" parent="qtcollege_students_menu"
+             sequence="10"/>
+
+
+ </data>
+</tryton>
+   
