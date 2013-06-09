@@ -102,8 +102,6 @@ class Product(ModelSQL, ModelView):
 Product()
 
 
-
-
 class StudentData(ModelSQL, ModelView):
     'Student related information'
     _name = 'qtcollege.student'
@@ -114,10 +112,10 @@ class StudentData(ModelSQL, ModelView):
             ('is_person', '=', True),
             ],
         help='student Name')
-    lastname = fields.Function(fields.Char('Lastname'),
-        'get_student_lastname', searcher='search_student_lastname')
-    ssn = fields.Function(fields.Char('SSN'),
-        'get_student_ssn', searcher='search_student_ssn')
+    #lastname = fields.Function(fields.Char('Lastname'),
+    #    'get_student_lastname', searcher='search_student_lastname')
+    #ssn = fields.Function(fields.Char('SSN'),
+    #    'get_student_ssn', searcher='search_student_ssn')
     identification_code = fields.Char('ID', readonly=True,
         help='student Identifier provided by the University.Is not the'
         ' Social Security Number')
@@ -151,7 +149,7 @@ class StudentData(ModelSQL, ModelView):
     general_info = fields.Text('General Information',
         help='General information about the patient')
     
-  
+    
 
 StudentData()
 
