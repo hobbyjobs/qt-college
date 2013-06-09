@@ -1,19 +1,46 @@
 <?xml version="1.0"?>
 <tryton>
     <data>
-
-
-
 <!-- Initial Menu -->
         <menuitem name="College" id="qtcollege_menu"/>
-        <menuitem name="Students" id="qtcollege_students_menu"
-            parent="qtcollege_menu" sequence="10" />
+        
+        
+<menuitem name="Faculty" id="qtcollege_faculty_menu"
+            parent="qtcollege_menu" sequence="999" />
 
-        <menuitem name="Configuration" id="qtcollege_conf_menu"
+<menuitem name="Faculty Schedule" id="qtcollege_schedule_menu"
+            parent="qtcollege_faculty_menu" sequence="999" />
+
+<menuitem name="Faculty Load Management" id="qtcollege_load_menu"
+            parent="qtcollege_faculty_menu" sequence="999" />
+
+<menuitem name="Faculty Attendance Management" id="qtcollege_attendance_menu"
+            parent="qtcollege_faculty_menu" sequence="999" />
+        
+<menuitem name="Faculty Configuration" id="qtcollege_conf_menu"
+            parent="qtcollege_menu" sequence="999" />
+
+  <menuitem name="Students" id="qtcollege_students_menu"
+            parent="qtcollege_menu" sequence="10" />
+      
+
+
+
+
+<menuitem name="Students Admissions" id="qtcollege_admissions_menu"
+            parent="qtcollege_students_menu" sequence="10" />
+  
+<menuitem name="Student Promotions" id="qtcollege_promotions_menu"
+            parent="qtcollege_students_menu" sequence="10" />
+  
+<menuitem name="Student Configuration" id="qtcollege_configuration_menu"
+            parent="qtcollege_students_menu" sequence="10" />
+
+        
+<menuitem name="Configuration" id="qtcollege_conf_menu"
             parent="qtcollege_menu" sequence="999" />
 
 <!-- Teachers -->
-
         <record model="ir.ui.view" id="qtcollege_teacher_view">
             <field name="model">qtcollege.teacher</field>
             <field name="type">form</field>
@@ -25,7 +52,6 @@
                         <field name="name"/>
                         <label name="institution"/>
                         <field name="institution"/>
-                       
                         <label name="code"/>
                         <field name="code"/>
                     </group>
@@ -37,7 +63,6 @@
                 ]]>
             </field>
         </record>
-
         <record model="ir.ui.view" id="qtcollege_teacher_tree">
             <field name="model">qtcollege.teacher</field>
             <field name="type">tree</field>
@@ -45,7 +70,6 @@
                 <![CDATA[
                 <tree string="Teachers">
                     <field name="name" expand="1"/>
-                   
                     <field name="code" expand="1"/>
                     <field name="institution" expand="1"/>
                 </tree>
@@ -74,7 +98,7 @@
              sequence="1"/>
         
         <menuitem action="qtcollege_action_teacher"
-            id="qtcollege_edit_teacher" parent="qtcollege_conf_teachers"
+            id="qtcollege_edit_teacher" parent="qtcollege_faculty_menu"
              sequence="1"/>
 
 
@@ -352,6 +376,68 @@
         <menuitem action="action_qtcollege_student_view"
             id="menu_qtcollege_student_list" parent="qtcollege_students_menu"
              sequence="10"/>
+
+
+<!-- Class -->
+
+        <record model="ir.ui.view" id="qtcollege_class_form">
+            <field name="model">qtcollege.class</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <form string="classs">
+                    <notebook>
+                        <page string="Main Info" id="medicament_main">
+                            <label name="subjectid"/>
+                            <field name="subjectid"/>
+                            <label name="teacherid"/>
+                            <field name="teacherid"/>
+                            <newline/>
+		                </page>
+                        <page string="Extra Info" id="medicament_extra_info">
+                            <label name="class_description"/>
+                            <field name="class_description"/>
+                        </page>
+
+                    </notebook>
+                </form>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="qtcollege_class_tree">
+            <field name="model">qtcollege.class</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="classs">
+                    <field name="subjectid" expand="1"/>
+                    <field name="classdescription"/>
+                </tree>
+                ]]>
+            </field>
+        </record>
+
+        <record model="ir.action.act_window" id="qtcollege_action_view_class">
+            <field name="name">classes</field>
+            <field name="res_model">qtcollege.class</field>
+        </record>
+
+        <record model="ir.action.act_window.view" id="act_qtcollege_class_list_view">
+            <field name="sequence" eval="10"/>
+            <field name="view" ref="qtcollege_class_tree"/>
+            <field name="act_window" ref="qtcollege_action_view_class"/>
+        </record>
+        <record model="ir.action.act_window.view" id="act_qtcollege_class_form_view">
+            <field name="sequence" eval="20"/>
+            <field name="view" ref="qtcollege_class_form"/>
+            <field name="act_window" ref="qtcollege_action_view_class"/>
+        </record>
+
+        <menuitem action="qtcollege_action_view_class"
+            id="qtcollege_edit_class" />
+
+
 
 
  </data>

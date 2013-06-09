@@ -153,3 +153,13 @@ class StudentData(ModelSQL, ModelView):
 
 StudentData()
 
+
+class Class(ModelSQL, ModelView):
+    'Class'
+    _name = 'qtcollege.class'
+    subjectid = fields.Many2One('qtcollege.subject','Subject ID')
+    teacherid= fields.Many2One('qtcollege.teacher','Teacher ID')
+    class_description = fields.Text('Class Description')
+    
+Class()
+
