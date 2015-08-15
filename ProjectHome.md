@@ -1,0 +1,1 @@
+QT College (ERP in Education) provides the freedom and accessibility of Free Software for educational Institutions , so every educational Institutions ,independent of economic status, can improve the quality of education of their citizens using a sustainable modular ERP
